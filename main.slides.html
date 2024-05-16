@@ -6,7 +6,7 @@
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <title>main slides</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script><script type="module">
-  import mermaid from 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.0/mermaid.esm.min.mjs';
+  import mermaid from 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.7.0/mermaid.esm.min.mjs';
   mermaid.initialize({ startOnLoad: true });
 </script>
 <!-- General and theme style sheets -->
@@ -7648,7 +7648,7 @@ $y(\cdot, \cdot)$ is the network output.
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Requirements-for-implementation-of-a-MP-Layer">Requirements for implementation of a MP-Layer<a class="anchor-link" href="#Requirements-for-implementation-of-a-MP-Layer">¶</a></h3><ul>
-<li><b>Invariance</b> to node permutation</li>
+<li><b>Equivariance</b> to node permutation</li>
 <li>Handling of <b>variable-length</b> inputs
     <li>Scalable models (graphs can have many nodes)</li>
 </li></ul>
@@ -7807,6 +7807,18 @@ Note that summation can be replaced by other invariant functions.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Deep-sets">Deep sets<a class="anchor-link" href="#Deep-sets">¶</a></h3><p>A special case of GNNs arises if we consider a graph with <b>no</b> edges, which corresponds simply to an unstructured set of nodes.</p>
+<p>In this case if we use the aforementioned aggregation function for each node in the set, in which the summation is taken over all other nodes except the node itself, then we have a general framework for learning functions over unstructured sets of varaibles called <b>deep sets</b>.</p>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Since each node in a given layer of the network is updated by aggregating information from its neighbors in the previous layer, this defines a <b>receptive field</b> alogous to the receptive fields of filters used in CNNs.</p>
 <p>As information is processed through successive layers, the updates to a given node depende on a steadely increasing fraction of other nodes in earlier layers until the effective receptive field potentially spans the <b>whole graph</b>.</p>
 <p style="text-align:center;"><img alt="drawing" src="images/field.png" style="text-align:center;" width="600"/> </p>
@@ -7839,7 +7851,10 @@ require(
             history: true,
             transition: "slide",
             slideNumber: "",
-            plugins: [RevealNotes]
+            plugins: [RevealNotes],
+            width: 960,
+			      height: 700,
+
         });
 
         var update = function(event){
